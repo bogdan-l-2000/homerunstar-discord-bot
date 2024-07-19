@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Header file with bot token
+homerunstarBot.h
+
+# Visual Studio Code Files
+.vscode/*
+
+# Build file
+build/*
