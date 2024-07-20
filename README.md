@@ -1,3 +1,5 @@
-# homerunstar-discord-bot
+# The Homerunstar Discord Bot
 
-Idea: use the D++ (DPP) C++ library for Discord: https://dpp.dev/
+This bot uses the D++ (DPP) C++ library for Discord: https://dpp.dev/
+
+
