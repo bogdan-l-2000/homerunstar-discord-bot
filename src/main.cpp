@@ -12,7 +12,6 @@ int main(int argc, char *argv[]) {
     bot.on_log(dpp::utility::cout_logger());
  
     bot.on_slashcommand([](const dpp::slashcommand_t& event) {
-        cout << event.command.get_command_name() << endl;
         if (event.command.get_command_name() == "ig") {
             event.reply(INSTAGRAM_URL);
         } else if (event.command.get_command_name() == "yt") {
