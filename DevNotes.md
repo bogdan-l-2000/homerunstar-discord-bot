@@ -1,6 +1,6 @@
 # Homerunstar Bot Development and Environment notes
 
-This has an `include/` directory with a `homerunstarBot.h` file.
+The `include/` directory in the project contains a `homerunstarBot.h` file.
 
 The contents of the file include:
 
