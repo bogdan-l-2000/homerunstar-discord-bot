@@ -18,6 +18,34 @@ int main(int argc, char *argv[]) {
             event.reply(YOUTUBE_URL);
         } else if (event.command.get_command_name() == "sc") {
             event.reply(SOUNDCLOUD_URL);
+        } else if (event.command.get_command_name() == "join") {
+            dpp::guild* g = dpp::find_guild(event.command.guild_id);
+            
+            auto current_vc = event.from->get_voice(event.command.guild_id);
+
+            bool join_vc = true;
+
+            if (current_vc) {
+                auto users_vc = g->voice_members.find(event.command.get_issuing_user().id);
+
+                if (users_vc != g->voice_members.end() && current_vc->channel_id == users_vc->second.channel_id) {
+                    join_vc = false;
+                } else {
+                    event.from->disconnect_voice(event.command.guild_id);
+
+                    join_vc = true;
+                }
+            }
+
+            if (join_vc) {
+                if (!g->connect_member_voice(event.command.get_issuing_user().id)) {
+                    event.reply("You don't seem to be in a voice channel.");
+                    return;
+                }
+                event.reply("Joined the channel!");
+            } else {
+                event.reply("Already joined the channel!");
+            }
         }
     });
  
@@ -31,6 +59,7 @@ int main(int argc, char *argv[]) {
             bot.global_command_create(dpp::slashcommand("ig", "Instagram URL", bot.me.id));
             bot.global_command_create(dpp::slashcommand("yt", "YouTube URL", bot.me.id));
             bot.global_command_create(dpp::slashcommand("sc", "Soundcloud URL", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("join", "Joins your voice channel.", bot.me.id));
             cout << "Commands created!" << endl;
         }
         cout << "Bot is ready!" << endl;
