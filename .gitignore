@@ -39,3 +39,6 @@ homerunstarBot.h
 
 # Build file
 build/*
+
+# CMake presets
+CMake*.json

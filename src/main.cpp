@@ -46,6 +46,9 @@ int main(int argc, char *argv[]) {
             } else {
                 event.reply("Already joined the channel!");
             }
+        } else if (event.command.get_command_name() == "leave") {
+            event.from->disconnect_voice(event.command.guild_id);
+            event.reply("Left the channel! See you next time.");
         }
     });
  
@@ -60,6 +63,7 @@ int main(int argc, char *argv[]) {
             bot.global_command_create(dpp::slashcommand("yt", "YouTube URL", bot.me.id));
             bot.global_command_create(dpp::slashcommand("sc", "Soundcloud URL", bot.me.id));
             bot.global_command_create(dpp::slashcommand("join", "Joins your voice channel.", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("leave", "Leaves your voice channel.", bot.me.id));
             cout << "Commands created!" << endl;
         }
         cout << "Bot is ready!" << endl;
